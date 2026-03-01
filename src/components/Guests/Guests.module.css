@@ -1,4 +1,4 @@
-```css .guestsWrapper {
+.guestsWrapper {
     padding: var(--space-xl) 0;
     background: linear-gradient(180deg, #0f172a 0%, #05080c 100%);
     min-height: 50vh;
