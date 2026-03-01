@@ -1,0 +1,139 @@
+.organizersWrapper {
+    padding: var(--space-xl) 0;
+    background: linear-gradient(to bottom, transparent, rgba(15, 23, 42, 0.5));
+}
+
+.mainOrganizerBox {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 8rem;
+}
+
+.mainTitle {
+    font-size: 4rem;
+    color: var(--gold-accent);
+    margin: 1rem 0 2rem;
+    font-family: var(--ff-h);
+}
+
+.mainDesc {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    opacity: 0.7;
+    margin-bottom: 2rem;
+}
+
+.coordinator {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.coordLabel {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    opacity: 0.4;
+}
+
+.coordName {
+    font-size: 1.2rem;
+    color: var(--white-warm);
+    font-weight: 600;
+}
+
+.partnersSection {
+    margin-top: 4rem;
+}
+
+.partnersHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+.headerLine {
+    width: 60px;
+    height: 2px;
+    background: var(--gold-accent);
+    margin-top: 1rem;
+    opacity: 0.5;
+}
+
+.partnersGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+    .partnersGrid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.partnerCard {
+    background: rgba(15, 23, 42, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 3rem 2rem;
+    border-radius: var(--radius);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.partnerCard:hover {
+    transform: translateY(-10px);
+    border-color: rgba(212, 175, 55, 0.2);
+    background: rgba(15, 23, 42, 0.5);
+}
+
+.logoCircle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid rgba(212, 175, 55, 0.1);
+    margin: 0 auto 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15, 23, 42, 0.5);
+    transition: var(--transition);
+}
+
+.partnerCard:hover .logoCircle {
+    border-color: var(--gold-accent);
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+}
+
+.logoInitials {
+    font-size: 1.5rem;
+    color: var(--gold-accent);
+    font-weight: 700;
+    opacity: 0.6;
+}
+
+.partnerType {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.4;
+    margin-bottom: 0.5rem;
+}
+
+.partnerName {
+    font-size: 1rem;
+    line-height: 1.4;
+    color: var(--white-warm);
+}
+
+@media (max-width: 768px) {
+    .mainTitle {
+        font-size: 2.5rem;
+    }
+
+    .partnersGrid {
+        grid-template-columns: 1fr;
+    }
+}

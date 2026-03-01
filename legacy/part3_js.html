@@ -1,0 +1,185 @@
+<script>
+    /* ====================================================
+       MAIN APPLICATION SCRIPT
+       ==================================================== */
+
+    /* --- LANGUAGE SWITCHER --- */
+    function switchLang(code) {
+        if (window.applyLang) window.applyLang(code);
+    }
+
+    /* --- HAMBURGER / MOBILE MENU --- */
+    const hamburger = document.getElementById('hamburger');
+    const mobMenu = document.getElementById('mobMenu');
+    const mobClose = document.getElementById('mobClose');
+
+    function openMob() {
+        mobMenu.classList.add('open');
+        hamburger.classList.add('open');
+        hamburger.setAttribute('aria-expanded', 'true');
+    }
+    function closeMob() {
+        mobMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+    }
+    hamburger.addEventListener('click', () => {
+        mobMenu.classList.contains('open') ? closeMob() : openMob();
+    });
+    mobClose.addEventListener('click', closeMob);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMob(); });
+
+    /* --- NAVBAR SCROLL SHRINK --- */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    /* --- SCROLL REVEAL (Intersection Observer) --- */
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+        });
+    }, { threshold: .18 });
+    function observeAll() {
+        document.querySelectorAll('.reveal:not(.visible)').forEach(el => io.observe(el));
+    }
+
+    /* --- FLOATING NOTES in HERO --- */
+    (function spawnNotes() {
+        const container = document.getElementById('heroNotes');
+        const notes = ['♩', '♪', '♫', '♬', '𝄞', '𝄢'];
+        for (let i = 0; i < 14; i++) {
+            const n = document.createElement('span');
+            n.className = 'note';
+            n.textContent = notes[i % notes.length];
+            n.style.left = (Math.random() * 90 + 5) + '%';
+            n.style.top = (Math.random() * 80 + 5) + '%';
+            n.style.fontSize = (Math.random() * .8 + .9) + 'rem';
+            n.style.animationDelay = (Math.random() * 8) + 's';
+            n.style.animationDuration = (Math.random() * 6 + 8) + 's';
+            container.appendChild(n);
+        }
+    })();
+
+    /* --- COUNTER ANIMATION --- */
+    function animateCounter(el, target, duration) {
+        let start = 0, startTime = null;
+        function step(ts) {
+            if (!startTime) startTime = ts;
+            const p = Math.min((ts - startTime) / duration, 1);
+            el.textContent = Math.floor(p * target) + '+';
+            if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+    }
+    const counterIO = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                const el = e.target;
+                animateCounter(el, parseInt(el.dataset.counter || '0'), 1500);
+                counterIO.unobserve(el);
+            }
+        });
+    }, { threshold: .5 });
+    document.querySelectorAll('[data-counter]').forEach(el => counterIO.observe(el));
+
+    /* --- COUNTDOWN TIMER --- */
+    (function initCountdown() {
+        const deadline = new Date('2025-03-25T23:59:59+02:00').getTime();
+        const els = {
+            d: document.getElementById('cd-d'),
+            h: document.getElementById('cd-h'),
+            m: document.getElementById('cd-m'),
+            s: document.getElementById('cd-s'),
+        };
+        function pad(n) { return String(n).padStart(2, '0'); }
+        function tick() {
+            const diff = deadline - Date.now();
+            if (diff <= 0) {
+                Object.values(els).forEach(e => { if (e) e.textContent = '00'; });
+                return;
+            }
+            const d = Math.floor(diff / 86400000);
+            const h = Math.floor((diff % 86400000) / 3600000);
+            const m = Math.floor((diff % 3600000) / 60000);
+            const s = Math.floor((diff % 60000) / 1000);
+            if (els.d) els.d.textContent = pad(d);
+            if (els.h) els.h.textContent = pad(h);
+            if (els.m) els.m.textContent = pad(m);
+            if (els.s) els.s.textContent = pad(s);
+        }
+        tick();
+        setInterval(tick, 1000);
+    })();
+
+    /* --- RENDER PROGRAM DAYS --- */
+    window.renderProgram = function (lang) {
+        const grid = document.getElementById('daysGrid');
+        if (!grid || !lang.program || !lang.program.days) return;
+        const icons = { cross: '✝', book: '📖', music: '🎶', sun: '☀' };
+        const colorMap = { gold: 'cg', crimson: 'cc', blue: 'cb' };
+        grid.innerHTML = lang.program.days.map(day => {
+            const cls = colorMap[day.color] || 'cb';
+            const icon = icons[day.icon] || '✦';
+            const events = day.events.map(ev => {
+                // build tag CSS class
+                const tkey = ev.tag.toLowerCase();
+                let tcls = 'ts';
+                if (tkey === 'liturgie' || tkey === 'liturgy') tcls = 'tl';
+                else if (tkey === 'muzică' || tkey === 'music') tcls = 'tm';
+                else if (tkey === 'formare' || tkey === 'formation') tcls = 'tf';
+                const tagLabel = lang.program.tagLabels[ev.tag] || ev.tag;
+                return `<div class="ev">
+        <span class="etag ${tcls}" aria-label="${tagLabel}">${tagLabel}</span>
+        <span class="etxt">${ev.text}</span>
+      </div>`;
+            }).join('');
+            return `<article class="day-card ${cls} reveal" aria-label="${day.day} - ${day.theme}">
+      <div class="dhd">
+        <div class="dicon" aria-hidden="true">${icon}</div>
+        <div>
+          <div class="dname">${day.day}</div>
+          <div class="dtheme">${day.theme}</div>
+        </div>
+      </div>
+      <div class="devents">${events}</div>
+    </article>`;
+        }).join('');
+        observeAll();
+    };
+
+    /* --- RENDER PARTNERS --- */
+    window.renderPartners = function (lang) {
+        const grid = document.getElementById('partnersGrid');
+        if (!grid || !lang.partners) return;
+        const p = lang.partners;
+        const o = p.orgs;
+        const cards = [
+            { icon: '🎵', cat: p.organizedBy, name: o.harmonia },
+            { icon: '🎭', cat: p.partners, name: o.artistul },
+            { icon: '⛪', cat: p.partners, name: o.episcopia },
+            { icon: '🎶', cat: p.artisticCoord, name: o.iustin },
+            { icon: '🏛️', cat: p.culturalPartner, name: o.filarmonica },
+            { icon: '✝', cat: p.partnership, name: o.oficiul },
+        ];
+        grid.innerHTML = cards.map((c, i) => `
+    <div class="pcard reveal r${(i % 4) + 1}" role="listitem">
+      <div class="pcat">${c.cat}</div>
+      <div class="picon" aria-hidden="true">${c.icon}</div>
+      <div class="pname">${c.name}</div>
+    </div>`).join('');
+        observeAll();
+    };
+
+    /* --- INIT ON DOM READY --- */
+    document.addEventListener('DOMContentLoaded', () => {
+        // Detect saved language preference
+        let preferred = 'ro';
+        try { preferred = localStorage.getItem('preferred-lang') || 'ro'; } catch (_) { }
+        // Apply language (this also calls renderProgram + renderPartners)
+        if (window.applyLang) window.applyLang(preferred);
+        // Observe all static reveal elements
+        observeAll();
+    });
+</script>

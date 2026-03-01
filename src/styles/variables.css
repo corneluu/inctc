@@ -1,0 +1,35 @@
+:root {
+    /* Colors */
+    --blue-primary: #0f172a;
+    --gold-accent: #d4af37;
+    --crimson-red: #7c1d1d;
+    --white-warm: #faf9f6;
+    --cream-soft: #f5f5dc;
+
+    /* Glassmorphism */
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+    /* Typography */
+    --ff-h: 'Playfair Display', serif;
+    --ff-b: 'Inter', sans-serif;
+    --ff-a: 'Cormorant Garamond', serif;
+
+    /* Breakpoints */
+    --mobile: 320px;
+    --tablet: 768px;
+    --desktop: 1024px;
+    --large: 1440px;
+
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 2rem;
+    --space-xl: 4rem;
+
+    /* Others */
+    --radius: 12px;
+    --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}

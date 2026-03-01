@@ -1,0 +1,151 @@
+@import './variables.css';
+
+/* Reset & Base */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--ff-b);
+    background-color: var(--blue-primary);
+    color: var(--white-warm);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--ff-h);
+    line-height: 1.2;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font: inherit;
+    transition: var(--transition);
+}
+
+/* Accessibility */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--gold-accent);
+    color: var(--blue-primary);
+    padding: 8px;
+    z-index: 100;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+:focus-visible {
+    outline: 2px solid var(--gold-accent);
+    outline-offset: 4px;
+}
+
+/* Layout */
+.container {
+    width: 100%;
+    max-width: var(--large);
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+}
+
+section {
+    padding: var(--space-xl) 0;
+}
+
+/* Scroll Animation Classes */
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Utilities */
+.pt-nav {
+    padding-top: 100px;
+    /* Adjust based on navbar height */
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background-color: var(--gold-accent);
+    color: var(--blue-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--white-warm);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.slabel {
+    display: inline-block;
+    font-family: var(--ff-a);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--gold-accent);
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.slabel::before {
+    content: '';
+    position: absolute;
+    left: -2rem;
+    top: 50%;
+    width: 1.5rem;
+    height: 1px;
+    background: var(--gold-accent);
+}
+
+.slabel::after {
+    content: '';
+    position: absolute;
+    right: -2rem;
+    top: 50%;
+    width: 1.5rem;
+    height: 1px;
+    background: var(--gold-accent);
+}

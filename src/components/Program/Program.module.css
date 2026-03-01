@@ -1,0 +1,242 @@
+.programWrapper {
+    padding: var(--space-xl) 0;
+    min-height: 50vh;
+}
+
+.timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.line {
+    position: absolute;
+    left: 40px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--gold-accent) 0%, rgba(212, 175, 55, 0.1) 100%);
+    opacity: 0.3;
+}
+
+.daySection {
+    position: relative;
+    margin-bottom: 6rem;
+    padding-left: 100px;
+}
+
+.dayIndicator {
+    position: absolute;
+    left: 20px;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    background: var(--gold-accent);
+    color: var(--blue-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    z-index: 2;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+.dayHeader {
+    margin-bottom: 3rem;
+}
+
+.dayMeta {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.dayName {
+    font-family: var(--ff-h);
+    font-size: 3rem;
+    color: var(--gold-accent);
+    line-height: 1;
+}
+
+.date {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.dayTitle {
+    font-size: 1.5rem;
+    color: var(--white-warm);
+    opacity: 0.8;
+}
+
+.activitiesGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .activitiesGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.activityItem {
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: var(--radius);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.activityItem:hover {
+    background: rgba(15, 23, 42, 0.6);
+    border-color: rgba(212, 175, 55, 0.2);
+    transform: translateY(-5px);
+}
+
+.activityHighlight {
+    border-color: rgba(212, 175, 55, 0.3);
+    background: rgba(212, 175, 55, 0.03);
+}
+
+.activityHighlight::after {
+    content: 'HIGHLIGHT';
+    position: absolute;
+    top: 1rem;
+    right: -2rem;
+    background: var(--gold-accent);
+    color: var(--blue-primary);
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 0.25rem 3rem;
+    transform: rotate(45deg);
+}
+
+.activityHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.time {
+    font-family: var(--ff-h);
+    font-size: 1.25rem;
+    color: var(--gold-accent);
+}
+
+.typeTag {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+/* Activity Type Colors */
+.tag-liturgy {
+    background: #0f172a;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tag-rehearsal {
+    background: #d4af37;
+    color: #000;
+}
+
+.tag-concert {
+    background: #7c1d1d;
+    color: #fff;
+}
+
+.tag-meal {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.tag-workshop {
+    background: #1e40af;
+    color: #fff;
+}
+
+.activityTitle {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.location {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.programNote {
+    margin-top: 4rem;
+    display: flex;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: var(--radius);
+    align-items: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.noteIcon {
+    width: 30px;
+    height: 30px;
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--gold-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.programNote p {
+    font-size: 0.95rem;
+    opacity: 0.6;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .daySection {
+        padding-left: 0;
+        margin-top: 5rem;
+    }
+
+    .line {
+        display: none;
+    }
+
+    .dayHeader {
+        text-align: center;
+    }
+
+    .dayMeta {
+        justify-content: center;
+    }
+}

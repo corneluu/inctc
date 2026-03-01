@@ -1,0 +1,152 @@
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: var(--space-md) 0;
+    transition: background 0.3s ease, border 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.scrolled {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom-color: var(--glass-border);
+}
+
+.inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-family: var(--ff-a);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--gold-accent);
+    letter-spacing: 0.05em;
+}
+
+.links {
+    display: none;
+    list-style: none;
+    gap: var(--space-lg);
+}
+
+@media (min-width: 1024px) {
+    .links {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.link {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--white-warm);
+    opacity: 0.8;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.link:hover {
+    opacity: 1;
+    color: var(--gold-accent);
+}
+
+.linkActive::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gold-accent);
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.langSwitch {
+    display: flex;
+    gap: var(--space-xs);
+}
+
+.langBtn {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.langBtnActive {
+    color: var(--gold-accent);
+    border-color: var(--gold-accent);
+    background: rgba(212, 175, 55, 0.1);
+}
+
+.cta {
+    display: none;
+    background: var(--gold-accent);
+    color: var(--blue-primary);
+    padding: 0.6rem 1.25rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+@media (min-width: 768px) {
+    .cta {
+        display: block;
+    }
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 32px;
+    height: 32px;
+    justify-content: center;
+    cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+    .hamburger {
+        display: none;
+    }
+}
+
+.hamburger span {
+    width: 100%;
+    height: 2px;
+    background: var(--white-warm);
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+/* Mobile Menu */
+.mobileMenu {
+    position: fixed;
+    inset: 0;
+    background: var(--blue-primary);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    padding: 8rem 2rem;
+    gap: 2rem;
+}
+
+.mobileLink {
+    font-family: var(--ff-h);
+    font-size: 2.5rem;
+    color: var(--white-warm);
+}

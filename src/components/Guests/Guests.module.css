@@ -1,0 +1,262 @@
+```css .guestsWrapper {
+    padding: var(--space-xl) 0;
+    background: linear-gradient(180deg, #0f172a 0%, #05080c 100%);
+    min-height: 50vh;
+}
+
+.guestSection {
+    margin-bottom: 12rem;
+}
+
+.guestGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+@media (min-width: 1024px) {
+    .guestGrid {
+        grid-template-columns: 1.2fr 2fr;
+    }
+
+    .reverse .guestGrid {
+        grid-template-columns: 2fr 1.2fr;
+    }
+
+    .reverse .imageColumn {
+        order: 2;
+    }
+
+    .reverse .contentColumn {
+        order: 1;
+    }
+}
+
+.imageBox {
+    position: relative;
+    aspect-ratio: 4/5;
+    background: #1e293b;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+.guestImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.imageBox:hover .guestImg {
+    transform: scale(1.05);
+}
+
+.imagePlaceholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    color: rgba(255, 255, 255, 0.1);
+    background: var(--blue-primary);
+    z-index: -1;
+}
+
+.roleOverlay {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    right: 2rem;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1rem 1.5rem;
+    border-left: 3px solid var(--gold-accent);
+    color: var(--white-warm);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.statItem {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.statItem:hover {
+    background: rgba(212, 175, 55, 0.05);
+    border-color: rgba(212, 175, 55, 0.2);
+}
+
+.statNumber {
+    font-family: var(--ff-h);
+    font-size: 2rem;
+    color: var(--gold-accent);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.statLabel {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    opacity: 0.5;
+    letter-spacing: 0.1em;
+}
+
+.contentColumn {
+    padding: 2rem 0;
+}
+
+.guestName {
+    font-size: 4rem;
+    font-family: var(--ff-h);
+    color: var(--white-warm);
+    margin: 1rem 0 2rem;
+    line-height: 1;
+}
+
+.bioBox p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1.5rem;
+}
+
+.quoteBox {
+    position: relative;
+    margin: 3rem 0;
+    padding: 2rem 3rem;
+    border-left: 2px solid var(--gold-accent);
+    background: rgba(212, 175, 55, 0.03);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--gold-accent);
+}
+
+.quoteMark {
+    position: absolute;
+    top: -1rem;
+    left: 1rem;
+    font-size: 5rem;
+    opacity: 0.1;
+    font-family: serif;
+}
+
+.famousWorks {
+    margin-top: 3rem;
+}
+
+.famousWorks h4 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    opacity: 0.4;
+    margin-bottom: 1.5rem;
+}
+
+.worksList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.workTag {
+    padding: 0.5rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: var(--gold-accent);
+}
+
+@media (max-width: 768px) {
+    .guestName {
+        font-size: 2.5rem;
+    }
+
+    .guestSection {
+        margin-bottom: 6rem;
+    }
+}
+
+/* Secondary Guests */
+.secondaryGuest {
+    margin-top: 4rem;
+}
+
+.secondaryCard {
+    background: rgba(15, 23, 42, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 3rem;
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.secondaryCard:hover {
+    background: rgba(15, 23, 42, 0.5);
+    border-color: rgba(212, 175, 55, 0.2);
+}
+
+.secondaryHeader {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    .secondaryHeader {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+.secondaryImage {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+    background-color: #1e293b;
+}
+
+.secondaryRole {
+    display: block;
+    color: var(--gold-accent);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+}
+
+.name {
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+.organization {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.smallBio p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+}
